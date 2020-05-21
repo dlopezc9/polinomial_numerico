@@ -2,7 +2,7 @@
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
 import operator
-import damage, recognize, utils, divider
+import damage, recognize, utils, divider, polinomial
 import matplotlib.pyplot as plt
 import numpy as np
 import itertools
@@ -20,9 +20,6 @@ samples = samples[5000000:5000100]
 # Crea una copia de la real y le agrega ruido
 newsamples = samples.copy()
 damage.noiseadd(newsamples, 0.7, 0.3)
-
-polinomial.polinomial(samples,newsamples)
-exit()
 
 # Debe haber una mejor manera de volver las cosas mas sencillas, pero solo me funciono asi.
 tmp = samples.tolist()
@@ -55,18 +52,6 @@ countAux = 0
 divX = divider.divider(x,number * 5)
 divY = divider.divider(y,number * 5)
 ySD = divider.divider(ySD,number * 5)
-
-
-## TESTING
-#somearray = np.fft.rfftn(newsamples)
-#counter = 0
-#print(somearray)
-
-#plt.plot(somearray, color='black')
-
-#plt.show()
-## TESTING
-#exit()
 
 while k < 5:
     total = number * k
@@ -159,6 +144,17 @@ for s in range(len(x_poly)):
 
 plt.show()
 
-#
-# Repetirlo, pero segmentado
-#
+# Polinomial segmentado
+polinomial.method(1000)
+
+# Fourier
+## TESTING
+#somearray = np.fft.rfftn(newsamples)
+#counter = 0
+#print(somearray)
+
+#plt.plot(somearray, color='black')
+
+#plt.show()
+## TESTING
+#exit()
