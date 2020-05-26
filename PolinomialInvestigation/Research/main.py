@@ -2,7 +2,7 @@
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
 import operator
-import damage, recognize, utils, divider, polinomial
+import damage, recognize, utils, divider, polinomial, spline
 import matplotlib.pyplot as plt
 import numpy as np
 import itertools
@@ -21,6 +21,8 @@ samples = samples[5000000:5000100]
 newsamples = samples.copy()
 damage.noiseadd(newsamples, 0.7, 0.3)
 
+spline.spline(samples, newsamples)
+
 # Debe haber una mejor manera de volver las cosas mas sencillas, pero solo me funciono asi.
 tmp = samples.tolist()
 samples = np.array(tmp*5)
@@ -33,6 +35,7 @@ matchesSD = recognize.cheat(samples, samples, false_positives=0.04, false_negati
 xSD, ySD = utils.tovalidxy(samples, matchesSD)
 x, y = utils.tovalidxy(newsamples, matches)
 x = np.array(x).reshape((-1, 1))
+
 y = np.array(y)
 
 # Inicializa variables para el proceso.
@@ -149,12 +152,12 @@ polinomial.method(1000)
 
 # Fourier
 ## TESTING
-#somearray = np.fft.rfftn(newsamples)
-#counter = 0
-#print(somearray)
+somearray = np.fft.rfftn(newsamples)
+counter = 0
+print(somearray)
 
-#plt.plot(somearray, color='black')
+plt.plot(somearray, color='black')
 
-#plt.show()
+plt.show()
 ## TESTING
 #exit()
