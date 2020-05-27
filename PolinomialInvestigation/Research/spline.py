@@ -10,6 +10,8 @@ import statsmodels.formula.api as smf
 from math import sqrt as sqrt
 from sklearn.metrics import mean_squared_error as mean_squared_error
 
+# Adapted from https://www.kaggle.com/renanhuanca/regression-splines
+# Original idea in 2018 from GURCHETAN SINGH, https://www.analyticsvidhya.com/blog/2018/03/introduction-regression-splines-python-codes/
 
 def spline(real, noise):
 
@@ -54,13 +56,13 @@ def spline(real, noise):
 
     weights = np.polyfit(train_x, train_y, 25)
     
-    # generating model with the given weights
+    # Generating model with the given weights
     model = np.poly1d(weights)
 
-    #prediction on validation set
+    # Prediction on validation set
     pred = model(valid_x)
 
-    # plot the graph for 70 observations only
+    # Plot the graph for 70 observations only
     xp = np.linspace(valid_x.min(), valid_x.max(), 100)
     pred_plot = model(xp)
     plt.scatter(valid_x, valid_y, facecolor='None', edgecolor='k', alpha=0.3)
@@ -97,6 +99,7 @@ def spline(real, noise):
 
     # calculating RMSE
     rms = sqrt(mean_squared_error(valid_y, pred2))
+    # print(rms)
     
     # we sill plot the graph for the 70 observations only
     xp = np.linspace(valid_x.min(), valid_x.max()-1, 100)
