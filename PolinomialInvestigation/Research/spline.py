@@ -44,7 +44,7 @@ def spline(real, noise):
     xp = xp.reshape(-1,1)
     pred_plot = model.predict(xp)
 
-    plt.title('Title?', fontweight="bold", fontsize=16)
+    plt.title('Segmented Rebuilt', fontweight="bold", fontsize=16)
     plt.scatter(valid_x, valid_y, facecolor='None', edgecolor='k', alpha=0.3)
 
     #BASICO
@@ -59,7 +59,6 @@ def spline(real, noise):
     r2 = r2_score(valid_y,pred)
     print('RMSE: ', rms)
     print('R2: ', r2)
-    exit()
     weights = np.polyfit(train_x, train_y, 25)
     
     # Generating model with the given weights
@@ -162,7 +161,7 @@ def spline(real, noise):
     plt.plot(xp, pred1, label='Specifying degree=3 with 3 knots')
     plt.plot(xp, pred2, label='Specifying degree=3 with 4 knots')
     plt.plot(xp, real, label = 'Real')
-    plt.title('Title??', fontweight="bold", fontsize=16)
+    plt.title('Regression Splines', fontweight="bold", fontsize=16)
     plt.legend()
     plt.show()
 

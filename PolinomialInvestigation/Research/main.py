@@ -22,7 +22,6 @@ newsamples = samples.copy()
 damage.noiseadd(newsamples, 0.7, 0.3)
 
 spline.spline(samples, newsamples)
-exit()
 
 # Debe haber una mejor manera de hacer las cosas mas sencillas, pero solo me funciono asi.
 tmp = samples.tolist()
