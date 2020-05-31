@@ -8,6 +8,7 @@ from patsy import dmatrix
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 from math import sqrt as sqrt
+from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error as mean_squared_error
 
 # Adapted from https://www.kaggle.com/renanhuanca/regression-splines
@@ -43,17 +44,22 @@ def spline(real, noise):
     xp = xp.reshape(-1,1)
     pred_plot = model.predict(xp)
 
+    plt.title('Title?', fontweight="bold", fontsize=16)
     plt.scatter(valid_x, valid_y, facecolor='None', edgecolor='k', alpha=0.3)
 
     #BASICO
-    plt.plot(xp, pred_plot, label = "Regresion linear basica")
+    plt.plot(xp, pred_plot, label = "Basic linear regression")
+    plt.legend(loc='best')
 
     #REAL
-    plt.plot(xp, real, label = "Grafica real")
-
+    plt.plot(xp, real, label = "Real graph")
+    plt.legend(loc='best')
 
     rms = sqrt(mean_squared_error(valid_y, pred))
-
+    r2 = r2_score(valid_y,pred)
+    print('RMSE: ', rms)
+    print('R2: ', r2)
+    exit()
     weights = np.polyfit(train_x, train_y, 25)
     
     # Generating model with the given weights
@@ -68,7 +74,8 @@ def spline(real, noise):
     plt.scatter(valid_x, valid_y, facecolor='None', edgecolor='k', alpha=0.3)
 
     #POLINOMIAL.
-    plt.plot(xp, pred_plot, label = "Regresion linear polinomial")
+    plt.plot(xp, pred_plot, label = "Linear polynomial regression")
+    plt.legend(loc='best')
     plt.show()
 
 
@@ -99,7 +106,7 @@ def spline(real, noise):
 
     # calculating RMSE
     rms = sqrt(mean_squared_error(valid_y, pred2))
-    # print(rms)
+    print(rms)
     
     # we sill plot the graph for the 70 observations only
     xp = np.linspace(valid_x.min(), valid_x.max()-1, 100)
@@ -112,7 +119,8 @@ def spline(real, noise):
 
     # visualization
     fig, (ax1) =  plt.subplots(1,1, figsize=(12,5))
-    fig.suptitle("Piecewise constant", fontsize=14)
+    # fig.suptitle("Piecewise constant", fontsize=14, fontweight="bold")
+    plt.title('Piecewise constant', fontweight="bold", fontsize=16)
 
     # scatter plot with polynomial regression line
     ax1.scatter(train_x, train_y, facecolor='None', edgecolor='k', alpha=0.3)
@@ -138,7 +146,7 @@ def spline(real, noise):
     # calculating rmse
     rms1 = sqrt(mean_squared_error(valid_y, pred1))
     print(rms1)
-
+    print(valid_y)
     rms2 = sqrt(mean_squared_error(valid_y, pred2))
     print(rms2)
 
@@ -154,6 +162,7 @@ def spline(real, noise):
     plt.plot(xp, pred1, label='Specifying degree=3 with 3 knots')
     plt.plot(xp, pred2, label='Specifying degree=3 with 4 knots')
     plt.plot(xp, real, label = 'Real')
+    plt.title('Title??', fontweight="bold", fontsize=16)
     plt.legend()
     plt.show()
 

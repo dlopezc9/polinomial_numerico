@@ -108,7 +108,9 @@ def method(size):
         countAux = countAux + 6
 
     counter = 0
+    plt.title('Title????', fontweight="bold", fontsize=16)
     plt.plot(samples, label='real')
+    plt.legend(loc='best')
     ax = plt.axes()
     ax.xaxis.grid()
 
@@ -122,6 +124,8 @@ def method(size):
     for s in range(len(x_poly)):
         rmse = np.sqrt(mean_squared_error(ySD[s],y_poly_pred[s]))
         r2 = r2_score(ySD[s],y_poly_pred[s])
-        print("RMSE: ",rmse,"R2: ",r2)
+        print("RMSE: ",rmse," R2: ",r2)
+    print(len(x_poly))
 
+    plt.legend(loc='best')
     plt.show()

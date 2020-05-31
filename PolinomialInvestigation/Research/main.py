@@ -22,8 +22,9 @@ newsamples = samples.copy()
 damage.noiseadd(newsamples, 0.7, 0.3)
 
 spline.spline(samples, newsamples)
+exit()
 
-# Debe haber una mejor manera de volver las cosas mas sencillas, pero solo me funciono asi.
+# Debe haber una mejor manera de hacer las cosas mas sencillas, pero solo me funciono asi.
 tmp = samples.tolist()
 samples = np.array(tmp*5)
 tmp = newsamples.tolist()
@@ -129,7 +130,9 @@ while countAux < (len(xAux)-5):
 counter = 0
 
 # Real
+plt.title('Title???', fontweight="bold", fontsize=16)
 plt.plot(samples, label='real', color = "black")
+plt.legend(loc='best')
 ax = plt.axes()
 ax.xaxis.grid()
 
@@ -138,13 +141,12 @@ while  counter < number * k :
     plt.plot(divX[counter], y_poly_pred[counter], color='y')
     counter = counter + 1
 
-print("Division en ", number, " segmentos")
+# print("Division en ", number, " segmentos")
 
 for s in range(len(x_poly)):
     rmse = np.sqrt(mean_squared_error(ySD[s],y_poly_pred[s]))
     r2 = r2_score(ySD[s],y_poly_pred[s])
-    print("RMSE: ",rmse,"R2: ",r2)
-
+    # print("RMSE: ",rmse,"  R2: ",r2)
 plt.show()
 
 # Polinomial segmentado
@@ -154,7 +156,7 @@ polinomial.method(1000)
 ## TESTING
 somearray = np.fft.rfftn(newsamples)
 counter = 0
-print(somearray)
+# print(somearray)
 
 plt.plot(somearray, color='black')
 
