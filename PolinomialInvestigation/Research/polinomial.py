@@ -108,7 +108,6 @@ def method(size):
         countAux = countAux + 6
 
     counter = 0
-    plt.title('Title????', fontweight="bold", fontsize=16)
     plt.plot(samples, label='real')
     plt.legend(loc='best')
     ax = plt.axes()

@@ -10,12 +10,13 @@ import statsmodels.formula.api as smf
 from math import sqrt as sqrt
 from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error as mean_squared_error
+import warnings
 
 # Adapted from https://www.kaggle.com/renanhuanca/regression-splines
 # Original idea in 2018 from GURCHETAN SINGH, https://www.analyticsvidhya.com/blog/2018/03/introduction-regression-splines-python-codes/
 
 def spline(real, noise):
-
+    warnings.filterwarnings("ignore")
     data_d = []
     le = len(noise) + 1
     data_d.extend(range(1, le))

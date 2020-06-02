@@ -129,7 +129,6 @@ while countAux < (len(xAux)-5):
 counter = 0
 
 # Real
-plt.title('Title???', fontweight="bold", fontsize=16)
 plt.plot(samples, label='real', color = "black")
 plt.legend(loc='best')
 ax = plt.axes()
